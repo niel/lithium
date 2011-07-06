@@ -37,7 +37,7 @@ class Controller extends \lithium\core\Object {
 
 		return $this->_filter(__METHOD__, $params, function($self, $params) {
 			$request = $params['request'];
-			$options = $params['options'];
+			$options = $params['options'] + compact('request');
 			$params = $params['dispatchParams'];
 			set_time_limit((integer) $options['timeout']);
 			$group = join('\\', (array) $params['args']);

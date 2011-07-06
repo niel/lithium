@@ -35,12 +35,12 @@ use lithium\util\Inflector;
 		<div class="article">
 			<article>
 				<div class="test-menu">
-					<?php echo $report->render("menu", array("menu" => $menu, "base" => $base)) ?>
+					<?=$this->_render('element', "menu", compact("menu", "base")); ?>
 				</div>
 
 				<div class="test-content">
 					<?php if ($report->title) { ?>
-						<h2><span>test results for </span><?php echo $report->title; ?></h2>
+						<h2><span>test results for </span><?=$report->title; ?></h2>
 					<?php } ?>
 
 					<span class="filters">

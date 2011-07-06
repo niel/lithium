@@ -100,6 +100,15 @@ class Report extends \lithium\core\Object {
 	protected $_filters = array();
 
 	/**
+	 * Class dependencies.
+	 *
+	 * @var array
+	 */
+	protected $_classes = array(
+		'view' => 'lithium\template\View'
+	);
+
+	/**
 	 * Construct Report Object
 	 *
 	 * @param array $config Options array for the test run. Valid options are:
@@ -216,21 +225,25 @@ class Report extends \lithium\core\Object {
 	 * @filter
 	 */
 	public function render($template, $data = array()) {
-		$config = $this->_config;
+		$config = $this->_config + array(
+			'paths' => array(
+				'template' => '{:library}/test/templates/{:type}/{:template}.{:type}.php',
+				'layout'   => '{:library}/test/template/{:type}/layout.{:type}.php',
+				'element'  => '{:library}/test/templates/{:type}/{:template}.{:type}.php'
+			)
+		);
 
 		if ($template == "stats" && !$data) {
 			$data = $this->stats();
 		}
-		$template = Libraries::locate("test.templates.{$config['reporter']}", $template, array(
-			'filter' => false, 'type' => 'file', 'suffix' => ".{$config['format']}.php"
-		));
 		$params = compact('template', 'data', 'config');
 
 		return $this->_filter(__METHOD__, $params, function($self, $params, $chain) {
-			extract($params['data']);
-			ob_start();
-			include $params['template'];
-			return ob_get_clean();
+			$view = $self->invokeMethod('_instance', array('view', $params['config']));
+			return $view->render('all', $params['data'], array(
+				'template' => $params['template'],
+				'library' => 'lithium'
+			));
 		});
 	}
 
