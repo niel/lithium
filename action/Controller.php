@@ -133,6 +133,9 @@ class Controller extends \lithium\core\Object {
 	/**
 	 * Constructor.
 	 *
+	 * Populates the `$response` property with a new instance of the `Response` class passing it
+	 * configuration, and sets some rendering options, depending on the incoming request.
+	 *
 	 * @see lithium\action\Controller::$request
 	 * @see lithium\action\Controller::$response
 	 * @see lithium\action\Controller::$_render
@@ -152,16 +155,6 @@ class Controller extends \lithium\core\Object {
 			'classes' => []
 		];
 		parent::__construct($config + $defaults);
-	}
-
-	/**
-	 * Populates the `$response` property with a new instance of the `Response` class passing it
-	 * configuration, and sets some rendering options, depending on the incoming request.
-	 *
-	 * @return void
-	 */
-	protected function _init() {
-		parent::_init();
 
 		$this->_inherit(['_render']);
 
