@@ -73,6 +73,8 @@
   operate in _legacy_ mode (see above). In this case it also doesn't depend on the 
   `mcrypt` extension anymore.
 
+- `Service` does not silence exceptions anymore if they arise from using an unknown socket class.
+
 ### Deprecated
 
 - Short rendering instructions have now been officially deprecated and trigger a
