@@ -662,14 +662,13 @@ class Libraries {
 	/**
 	 * Uses service location (i.e. `Libraries::locate()`) to look up a named class of a particular
 	 * type, and creates an instance of it, and passes an array of parameters to the constructor.
-	 *
 	 * If the given class can't be found, an exception is thrown.
 	 *
 	 * @param string $type The type of class as defined by `Libraries::$_paths`.
 	 * @param string|object $name The un- or fully namespaced name of the class to instantiate or
 	 *        a name in the $classes array. Alternatively an already instantiated object, which will
 	 *        be returned unmodified.
-	 * @param array $config An array of constructor parameters to pass to the class.
+	 * @param array $options An array of constructor parameters to pass to the class.
 	 * @param array $classes Map of short names to fully namespaced classes or instantiated objects,
 	 *        to use for resolving short names.
 	 * @return object If the class is found, returns an instance of it.
