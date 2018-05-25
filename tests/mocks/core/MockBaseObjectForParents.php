@@ -12,7 +12,7 @@ namespace lithium\tests\mocks\core;
 /**
  * @deprecated
  */
-class MockObjectForParents extends \lithium\core\Object {
+class MockBaseObjectForParents extends \lithium\core\BaseObject {
 
 	public static function parents() {
 		return static::_parents();

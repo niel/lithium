@@ -14,8 +14,8 @@ use lithium\tests\mocks\core\MockRequest;
 use lithium\tests\mocks\core\MockMethodFiltering;
 use lithium\tests\mocks\core\MockExposed;
 use lithium\tests\mocks\core\MockCallable;
-use lithium\tests\mocks\core\MockObjectForParents;
-use lithium\tests\mocks\core\MockObjectConfiguration;
+use lithium\tests\mocks\core\MockBaseObjectForParents;
+use lithium\tests\mocks\core\MockBaseObjectConfiguration;
 use lithium\tests\mocks\core\MockInstantiator;
 
 class ObjectTest extends \lithium\test\Unit {
@@ -35,14 +35,14 @@ class ObjectTest extends \lithium\test\Unit {
 	 */
 	public function testObjectConfiguration() {
 		$expected = ['testScalar' => 'default', 'testArray' => ['default']];
-		$config = new MockObjectConfiguration();
+		$config = new MockBaseObjectConfiguration();
 		$this->assertEqual($expected, $config->getConfig());
 
-		$config = new MockObjectConfiguration(['autoConfig' => ['testInvalid']]);
+		$config = new MockBaseObjectConfiguration(['autoConfig' => ['testInvalid']]);
 		$this->assertEqual($expected, $config->getConfig());
 
 		$expected = ['testScalar' => 'override', 'testArray' => ['default', 'override']];
-		$config = new MockObjectConfiguration(['autoConfig' => [
+		$config = new MockBaseObjectConfiguration(['autoConfig' => [
 			'testScalar', 'testArray' => 'merge'
 		]] + $expected);
 		$this->assertEqual($expected, $config->getConfig());
@@ -63,12 +63,12 @@ class ObjectTest extends \lithium\test\Unit {
 	}
 
 	public function testParents() {
-		$expected = ['lithium\core\Object' => 'lithium\core\Object'];
+		$expected = ['lithium\core\BaseObject' => 'lithium\core\BaseObject'];
 
-		$result = MockObjectForParents::parents();
+		$result = MockBaseObjectForParents::parents();
 		$this->assertEqual($expected, $result);
 
-		$result = MockObjectForParents::parents();
+		$result = MockBaseObjectForParents::parents();
 		$this->assertEqual($expected, $result);
 	}
 
@@ -78,10 +78,10 @@ class ObjectTest extends \lithium\test\Unit {
 	 * @deprecated
 	 */
 	public function testStateBasedInstantiation() {
-		$result = MockObjectConfiguration::__set_state([
+		$result = MockBaseObjectConfiguration::__set_state([
 			'key' => 'value', '_protected' => 'test'
 		]);
-		$expected = 'lithium\tests\mocks\core\MockObjectConfiguration';
+		$expected = 'lithium\tests\mocks\core\MockBaseObjectConfiguration';
 		$this->assertEqual($expected, get_class($result));
 
 		$this->assertEqual('test', $result->getProtected());
@@ -239,7 +239,7 @@ class ObjectTest extends \lithium\test\Unit {
 	}
 
 	/**
-	 * Tests that the correct parameters are always passed in Object::invokeMethod(), regardless of
+	 * Tests that the correct parameters are always passed in BaseObject::invokeMethod(), regardless of
 	 * the number.
 	 *
 	 * @deprecated

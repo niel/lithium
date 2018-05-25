@@ -106,6 +106,7 @@ class Adaptable extends \lithium\core\StaticObject {
 	 * the `$_adapter` path defined in Adaptable subclasses.
 	 *
 	 * @param string|null $name Class name of adapter to load.
+	 *
 	 * @return object Adapter object.
 	 */
 	public static function adapter($name = null) {
@@ -130,6 +131,7 @@ class Adaptable extends \lithium\core\StaticObject {
 	 * the `$_strategies` path defined in `Adaptable` subclasses.
 	 *
 	 * @param string $name Class name of adapter to load.
+	 *
 	 * @return object `SplDoublyLinkedList` of strategies, or `null` if none are defined.
 	 */
 	public static function strategies($name) {
@@ -209,10 +211,12 @@ class Adaptable extends \lithium\core\StaticObject {
 	/**
 	 * Provides an extension point for modifying how adapters are instantiated.
 	 *
-	 * @see lithium\core\Object::__construct()
+	 * @see lithium\core\BaseObject::__construct()
+	 *
 	 * @param string $class The fully-namespaced class name of the adapter to instantiate.
 	 * @param array $config The configuration array to be passed to the adapter instance. See the
 	 *              `$config` parameter of `Object::__construct()`.
+	 *
 	 * @return object The adapter's class.
 	 * @filter
 	 */

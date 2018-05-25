@@ -32,7 +32,7 @@ namespace lithium\storage\cache;
  *
  * Adapters may handle serialization and/or multi-keys natively others only synthetically.
  */
-abstract class Adapter extends \lithium\core\Object {
+abstract class Adapter extends \lithium\core\BaseObject {
 
 	/**
 	 * Generates safe cache keys.
