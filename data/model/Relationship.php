@@ -365,7 +365,8 @@ class Relationship extends \lithium\core\BaseObject {
 	 */
 	protected function _embedBelongsTo(&$collection, $options) {
 		$keys = $this->key();
-		list($formKey, $toKey) = each($keys);
+		$formKey = key($keys);
+		$toKey = current($keys);
 
 		$related = [];
 
@@ -400,7 +401,8 @@ class Relationship extends \lithium\core\BaseObject {
 	 */
 	protected function _embedHasMany(&$collection, $options) {
 		$keys = $this->key();
-		list($formKey, $toKey) = each($keys);
+		$formKey = key($keys);
+		$toKey = current($keys);
 
 		$related = [];
 
@@ -445,7 +447,8 @@ class Relationship extends \lithium\core\BaseObject {
 	 */
 	protected function _embedHasManyAsList(&$collection, $options) {
 		$keys = $this->key();
-		list($formKey, $toKey) = each($keys);
+		$formKey = key($keys);
+		$toKey = current($keys);
 
 		$related = [];
 
@@ -489,7 +492,8 @@ class Relationship extends \lithium\core\BaseObject {
 	protected function _embedOne(&$collection, $options) {
 
 		$keys = $this->key();
-		list($formKey, $toKey) = each($keys);
+		$formKey = key($keys);
+		$toKey = current($keys);
 
 		$related = [];
 
