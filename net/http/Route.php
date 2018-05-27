@@ -225,10 +225,6 @@ class Route extends \lithium\core\Object {
 			'unicode'  => true
 		];
 		parent::__construct($config + $defaults);
-	}
-
-	protected function _init() {
-		parent::_init();
 
 		if (!$this->_config['continue'] && strpos($this->_template, '{:action:') === false) {
 			$this->_params += ['action' => 'index'];

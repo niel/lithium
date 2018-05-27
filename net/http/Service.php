@@ -96,21 +96,11 @@ class Service extends \lithium\core\Object {
 			'socket'     => 'Context'
 		];
 		parent::__construct($config + $defaults);
-	}
 
-	/**
-	 * Initialize connection.
-	 *
-	 * @return void
-	 */
-	protected function _init() {
-		$config = ['classes' => $this->_classes] + $this->_config;
+		$this->connection = Libraries::instance(
+			'socket', $this->_config['socket'], ['classes' => $this->_classes] + $this->_config
+		);
 
-		try {
-			$this->connection = Libraries::instance('socket', $config['socket'], $config);
-		} catch(ClassNotFoundException $e) {
-			$this->connection = null;
-		}
 		$this->_responseTypes += [
 			'headers' => function($response) { return $response->headers; },
 			'body' => function($response) { return $response->body(); },
