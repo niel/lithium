@@ -18,7 +18,7 @@ use lithium\tests\mocks\core\MockBaseObjectForParents;
 use lithium\tests\mocks\core\MockBaseObjectConfiguration;
 use lithium\tests\mocks\core\MockInstantiator;
 
-class ObjectTest extends \lithium\test\Unit {
+class BaseObjectTest extends \lithium\test\Unit {
 
 	protected $_backup = null;
 
